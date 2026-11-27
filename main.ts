@@ -1,20 +1,22 @@
-// A working best-site-01 entry (Node 22, standard library only): the site is this directory's app/ folder, plain
-// static files a browser opens at app/index.html (ES modules, CSS, no build step), its content held in its own files:
-// nothing it runs, styles or shows loads over the network. The program hands it in: it copies app/ and screenshots/
-// from beside this file to /output and writes /output/dossier.json, the summary the judge reads (your screenshots, the
-// first load's files and bytes, and your source), with the vendored make.fun library. Leave vendor/makefun-frontend.ts
-// as it is: the scorer requires dossier.json to be byte for byte what its own copy writes.
-//
-// A starting point, not a winner: a plain recipe collection, a list of recipes and a page for each. Build the site the
-// brief asks for in app/ (its content, ease of use, a phone layout, its look), put 3 or 4 PNG or JPEG screenshots of
-// it running in screenshots/ (the first by name is the cover; one may be a 390 x 844 phone view; shots.json says which
-// views this starter's were taken of), and run it.
+// NusaStat — a national statistics site for Indonesia (Node 22, standard
+// library only): the site is this directory's app/ folder, plain static
+// files a browser opens at app/index.html (ES modules, CSS, no build step),
+// its content held in its own files: nothing it runs, styles or shows loads
+// over the network. Seven hash-routed pages (overview, population, economy,
+// prices, jobs, provinces, about) with published BPS figures 2019–2024,
+// canvas charts, a working year picker, and a searchable, sortable province
+// table. The program hands it in: it copies app/ and screenshots/ from
+// beside this file to /output and writes /output/dossier.json, the summary
+// the judge reads (your screenshots, the first load's files and bytes, and
+// your source), with the vendored make.fun library. Leave
+// vendor/makefun-frontend.ts as it is: the scorer requires dossier.json to
+// be byte for byte what its own copy writes.
 //
 // Serve it locally with `node serve.ts`, then open http://localhost:8080.
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
@@ -34,3 +36,12 @@ writeFileSync(
   join(out, 'dossier.json'),
   buildDossier(out, { text_max_bytes: 163840, screenshots: { max: 4, max_bytes: 262144 }, app_max_files: 993, app_max_bytes: 16777216 }),
 );
+
+// Verify the handover before the grader sees it: the entry page, 3 or 4
+// screenshots, and a dossier that names them. A missing piece here would
+// fail the gate, so fail loudly instead of handing in a broken entry.
+const shots = readdirSync(join(out, 'screenshots')).filter((f) => !f.startsWith('.'));
+if (!existsSync(join(out, 'app', 'index.html'))) throw new Error('handoff: app/index.html is missing');
+if (shots.length < 3 || shots.length > 4) throw new Error(`handoff: ${shots.length} screenshots, need 3 or 4`);
+const dossier = JSON.parse(readFileSync(join(out, 'dossier.json'), 'utf8'));
+if (!dossier.text || !dossier.text.includes('app/index.html')) throw new Error('handoff: dossier does not cover app/index.html');
