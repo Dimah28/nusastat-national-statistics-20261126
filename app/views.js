@@ -33,7 +33,7 @@ export function overview() {
     <p class="lede">Population, prices, jobs and growth — the headline figures for
     281.6 million people, from the surveys and accounts of BPS, Statistics Indonesia.
     Pick a year, open a topic, and every figure shows where it came from.</p>
-    <p class="hero-meta">Latest release: October 2026 · Next release: 1 December 2026 · All figures free to reuse with attribution</p>
+    <p class="hero-meta">Latest release: January 2025 · Data through December 2024 · All figures free to reuse with attribution</p>
   </section>
   <section aria-label="Key indicators for 2024">
     <div class="section-head"><h2>Key indicators, 2024</h2>${yearPicker(2024)}</div>
@@ -246,7 +246,7 @@ export function about() {
     <ul class="sources">
       <li><strong>Population</strong> — 2020 Population Census and the official 2020–2024 projection.</li>
       <li><strong>Economy</strong> — National Accounts (quarterly GDP) and Foreign Trade Statistics.</li>
-      <li><strong>Prices</strong> — Consumer Price Index, priced monthly in 90 cities.</li>
+      <li><strong>Prices</strong> — Consumer Price Index, priced monthly in 150 regencies and cities.</li>
       <li><strong>Jobs</strong> — National Labour Force Survey (Sakernas), every February and August.</li>
       <li><strong>People</strong> — Human Development Index and Poverty Profile, annual and semiannual.</li>
     </ul>

@@ -148,10 +148,14 @@ export const PROVINCES = [
 ];
 
 export const RELEASES = [
-  { date: 'Nov 2026', title: 'Consumer Price Index, October 2026: inflation 0.11% month-to-month', tag: 'Prices' },
-  { date: 'Nov 2026', title: 'Labour Force Survey, August 2026: open unemployment 4.78%', tag: 'Employment' },
-  { date: 'Oct 2026', title: 'Economic Growth, Q3 2026: GDP up 5.12% year-on-year', tag: 'Economy' },
-  { date: 'Sep 2026', title: 'Poverty Profile, March 2026: poverty rate 8.24%', tag: 'People' },
-  { date: 'Aug 2026', title: 'Foreign Trade, July 2026: exports US$ 23.4 billion', tag: 'Economy' },
-  { date: 'Jul 2026', title: 'Human Development Index 2025: 75.48, up 0.46 points', tag: 'People' },
+  // Real BPS releases, Nov 2024 – Jan 2025 (verified against BPS release
+  // texts: GDP Q3 2024 No. 82/11/Th. XXVII, 5 Nov 2024; CPI Dec 2024
+  // No. 01/01/Th. XXVIII, 2 Jan 2025; Poverty Sep 2024, 15 Jan 2025;
+  // Foreign Trade Dec 2024, 15 Jan 2025; HDI 2024, Nov 2024).
+  { date: 'Jan 2025', title: 'Consumer Price Index, December 2024: inflation 1.57% year-on-year', tag: 'Prices' },
+  { date: 'Jan 2025', title: 'Poverty Profile, September 2024: poverty rate 8.57%, the lowest on record', tag: 'People' },
+  { date: 'Jan 2025', title: 'Foreign Trade, December 2024: exports US$ 23.46 billion', tag: 'Economy' },
+  { date: 'Nov 2024', title: 'Economic Growth, Q3 2024: GDP up 4.95% year-on-year', tag: 'Economy' },
+  { date: 'Nov 2024', title: 'Labour Force Survey, August 2024: open unemployment 4.91%', tag: 'Employment' },
+  { date: 'Nov 2024', title: 'Human Development Index 2024: 75.02, up 0.63 points', tag: 'People' },
 ];
